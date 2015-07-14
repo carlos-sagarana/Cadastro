@@ -1,6 +1,7 @@
 package cadastro.caelum.com.br.cadastrocaelum;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.ContextMenu;
@@ -10,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -78,11 +78,29 @@ public class ListaAlunosActivity extends ActionBarActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
-        MenuItem ligar = menu.add("Ligar");
-        MenuItem sms = menu.add("Enviar SMS");
-        MenuItem mapa = menu.add("Achar no Mapa");
-        MenuItem site = menu.add("Navegar no Site");
-        MenuItem deletar = menu.add("Deletar");
+        MenuItem ligar = menu.add(0, 0, 0, "Ligar");
+        Intent intentLigar = new Intent(Intent.ACTION_DIAL);
+        Uri numero = Uri.parse("tel:" + aluno.getTelefone());
+        intentLigar.setData(numero);
+        ligar.setIntent(intentLigar);
+
+        MenuItem sms = menu.add(0, 1, 0, "Enviar SMS");
+        Intent intentSMS = new Intent(Intent.ACTION_VIEW);
+        intentSMS.setData(Uri.parse("sms:" + aluno.getTelefone()));
+        intentSMS.putExtra("sms_body", "Mensagem");
+        sms.setIntent(intentSMS);
+
+        MenuItem mapa = menu.add(0, 2, 0, "Achar no Mapa");
+        Intent intentMapa = new Intent(Intent.ACTION_VIEW);
+        intentMapa.setData(Uri.parse("geo:0,0?z=14&q=" + aluno.getEndereco()));
+        mapa.setIntent(intentMapa);
+
+        MenuItem site = menu.add(0, 3, 0, "Navegar no Site");
+        Intent intentSite = new Intent(Intent.ACTION_VIEW);
+        intentSite.setData(Uri.parse("http://" + aluno.getSite()));
+        site.setIntent(intentSite);
+
+        MenuItem deletar = menu.add(0, 4, 0, "Deletar");
         deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -94,7 +112,13 @@ public class ListaAlunosActivity extends ActionBarActivity {
             }
         });
 
-        MenuItem email = menu.add("Enviar E-mail");
+        MenuItem email = menu.add(0, 5, 0, "Enviar E-mail");
+        Intent intentEmail = new Intent(Intent.ACTION_SEND);
+        intentEmail.setType("message/rfc822");
+        intentEmail.putExtra(Intent.EXTRA_EMAIL, new String[] {"carloseduardosx2015@gmail.com"});
+        intentEmail.putExtra(Intent.EXTRA_SUBJECT, "Elogios do curso de android");
+        intentEmail.putExtra(Intent.EXTRA_TEXT, "Este curso é ótimo!!!");
+        email.setIntent(intentEmail);
     }
 
     @Override

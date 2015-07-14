@@ -33,7 +33,6 @@ public class FormularioActivity extends Activity {
         botao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(FormularioActivity.this, "Você clicou no botão", Toast.LENGTH_LONG).show();
                 Aluno aluno = formularioHelper.getAluno();
                 AlunoDAO dao = new AlunoDAO(new DBHelper(FormularioActivity.this));
 

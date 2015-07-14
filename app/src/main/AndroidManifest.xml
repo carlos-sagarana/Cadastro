@@ -1,8 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cadastro.caelum.com.br.cadastrocaelum">
 
+    <uses-permission android:name="ANDROID.PERMISSION.CALL_PHONE" />
+    <uses-permission android:name="ANDROID.PERMISSION.READ_SMS" />
+    <uses-permission android:name="ANDROID.PERMISSION.SEND_SMS" />
+    <uses-permission android:name="ANDROID.PERMISSION.WRITE_SMS" />
+
     <application android:allowBackup="true" android:label="@string/app_name"
-        android:icon="@mipmap/ic_launcher" android:theme="@style/AppTheme">
+        android:icon="@drawable/ic_launcher" android:theme="@style/AppTheme">
 
         <activity
             android:name=".ListaAlunosActivity"
