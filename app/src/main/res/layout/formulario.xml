@@ -9,8 +9,8 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/foto"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_launcher"/>

@@ -5,6 +5,10 @@ package cadastro.caelum.com.br.extra;
  */
 public class Extras {
 
+    //Strings
     public static final String ALUNO_SELECIONADO = "alunoSelecionado";
+
+    //Inteiros
+    public static final int ARQUIVO_FOTO = 123;
 
 }

@@ -1,10 +1,15 @@
 package cadastro.caelum.com.br.cadastrocaelum;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ImageView;
+
+import java.io.File;
 
 import cadastro.caelum.com.br.dao.AlunoDAO;
 import cadastro.caelum.com.br.dao.DBHelper;
@@ -16,14 +21,28 @@ import cadastro.caelum.com.br.modelo.Aluno;
  */
 public class FormularioActivity extends Activity {
 
+    private FormularioHelper formularioHelper;
+    private String localArquivoFoto;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.formulario);
 
-        final FormularioHelper formularioHelper = new FormularioHelper(FormularioActivity.this);
+        formularioHelper = new FormularioHelper(FormularioActivity.this);
         final Aluno alunoParaSerAlterado = (Aluno) getIntent().getSerializableExtra(Extras.ALUNO_SELECIONADO);
         final Button botao = (Button) findViewById(R.id.botao);
+
+        ImageView foto = formularioHelper.getIbFoto();
+        foto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                localArquivoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
+                Intent intentFoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intentFoto.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(localArquivoFoto)));
+                startActivityForResult(intentFoto, Extras.ARQUIVO_FOTO);
+            }
+        });
 
         if (alunoParaSerAlterado != null) {
             botao.setText("Alterar");
@@ -47,5 +66,19 @@ public class FormularioActivity extends Activity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case Extras.ARQUIVO_FOTO:
+                if (resultCode == RESULT_OK) {
+                    formularioHelper.carregaImagem(localArquivoFoto);
+                    formularioHelper.setLocalArquivo(localArquivoFoto);
+                } else {
+                    localArquivoFoto = null;
+                }
+        }
     }
 }

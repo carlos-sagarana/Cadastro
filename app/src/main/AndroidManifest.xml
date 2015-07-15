@@ -2,6 +2,7 @@
     package="cadastro.caelum.com.br.cadastrocaelum">
 
     <uses-permission android:name="ANDROID.PERMISSION.CALL_PHONE" />
+    <uses-permission android:name="ANDROID.PERMISSION.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="ANDROID.PERMISSION.READ_SMS" />
     <uses-permission android:name="ANDROID.PERMISSION.SEND_SMS" />
     <uses-permission android:name="ANDROID.PERMISSION.WRITE_SMS" />

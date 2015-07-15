@@ -14,6 +14,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import cadastro.caelum.com.br.adapter.AlunoAdapter;
 import cadastro.caelum.com.br.dao.AlunoDAO;
 import cadastro.caelum.com.br.dao.DBHelper;
 import cadastro.caelum.com.br.extra.Extras;
@@ -130,7 +131,7 @@ public class ListaAlunosActivity extends ActionBarActivity {
     private void carregaLista() {
         lista = (ListView) findViewById(R.id.lista_alunos);
         final List<Aluno> alunos = new AlunoDAO(new DBHelper(this)).getAlunos();
-        final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos);
+        AlunoAdapter adapter = new AlunoAdapter(alunos, this);
         lista.setAdapter(adapter);
     }
 }

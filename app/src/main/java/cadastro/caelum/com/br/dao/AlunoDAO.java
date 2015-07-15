@@ -42,6 +42,7 @@ public class AlunoDAO {
             aluno.setNome(cursor.getString(cursor.getColumnIndex("nome")));
             aluno.setEndereco(cursor.getString(cursor.getColumnIndex("endereco")));
             aluno.setTelefone(cursor.getString(cursor.getColumnIndex("telefone")));
+            aluno.setCaminhoFoto(cursor.getString(cursor.getColumnIndex("foto")));
             aluno.setSite(cursor.getString(cursor.getColumnIndex("site")));
             aluno.setNota(cursor.getDouble(cursor.getColumnIndex("nota")));
             aluno.setId(cursor.getInt(cursor.getColumnIndex("id")));
