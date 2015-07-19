@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:CadastroCaelum="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/novo"
+        android:title="Novo"
+        android:icon="@drawable/contact_new"
+        CadastroCaelum:showAsAction="always"/>
+
+    <item
+        android:id="@+id/mapa"
+        android:title="Mapa"
+        android:icon="@drawable/ic_mapa"
+        CadastroCaelum:showAsAction="always"/>
+
+    <item
+        android:id="@+id/enviarAluno"
+        android:title="Enviar Alunos"
+        android:icon="@drawable/ic_enviar"
+        CadastroCaelum:showAsAction="always"/>
+
+    <item
+        android:id="@+id/receberAlunos"
+        android:title="Receber Alunos"
+        android:icon="@drawable/ic_receber"
+        CadastroCaelum:showAsAction="always"/>
+
+    <item
+        android:id="@+id/preferencias"
+        android:title="Preferências"
+        android:icon="@drawable/ic_preferencias"
+        CadastroCaelum:showAsAction="always"/>
+</menu>

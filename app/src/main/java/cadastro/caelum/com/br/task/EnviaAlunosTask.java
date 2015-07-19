@@ -28,7 +28,7 @@ public class EnviaAlunosTask extends AsyncTask<Object, Object, String>{
 
     @Override
     protected void onPreExecute() {
-        progress = ProgressDialog.show(context, "Aguarde...", "Estamos enviando os dados para o servidor.");
+        progress = ProgressDialog.show(context, "Aguarde...", "Enviando os dados para o servidor.");
     }
 
     @Override
