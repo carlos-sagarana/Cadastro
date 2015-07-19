@@ -11,14 +11,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import cadastro.caelum.com.br.adapter.AlunoAdapter;
+import cadastro.caelum.com.br.converter.AlunoConverter;
 import cadastro.caelum.com.br.dao.AlunoDAO;
 import cadastro.caelum.com.br.dao.DBHelper;
 import cadastro.caelum.com.br.extra.Extras;
 import cadastro.caelum.com.br.modelo.Aluno;
+import cadastro.caelum.com.br.network.WebClient;
+import cadastro.caelum.com.br.task.EnviaAlunosTask;
 
 /**
  * Created by carloseduardo on 10/07/15.
@@ -66,7 +70,11 @@ public class ListaAlunosActivity extends ActionBarActivity {
 
             case R.id.novo:
                 startActivity(new Intent(this, FormularioActivity.class));
-                break;
+                return false;
+
+            case R.id.enviarAluno:
+                new EnviaAlunosTask(this).execute();
+                return false;
 
             default:
                 break;
@@ -118,7 +126,7 @@ public class ListaAlunosActivity extends ActionBarActivity {
         intentEmail.setType("message/rfc822");
         intentEmail.putExtra(Intent.EXTRA_EMAIL, new String[] {"carloseduardosx2015@gmail.com"});
         intentEmail.putExtra(Intent.EXTRA_SUBJECT, "Elogios do curso de android");
-        intentEmail.putExtra(Intent.EXTRA_TEXT, "Este curso é ótimo!!!");
+        intentEmail.putExtra(Intent.EXTRA_TEXT, "Este curso ï¿½ ï¿½timo!!!");
         email.setIntent(intentEmail);
     }
 

@@ -50,6 +50,7 @@ public class AlunoDAO {
             alunos.add(aluno);
         }
 
+        cursor.close();
         return alunos;
     }
 
