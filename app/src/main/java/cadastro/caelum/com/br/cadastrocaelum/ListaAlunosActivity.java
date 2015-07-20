@@ -76,6 +76,10 @@ public class ListaAlunosActivity extends ActionBarActivity {
                 new EnviaAlunosTask(this).execute();
                 return false;
 
+            case R.id.receberAlunos:
+                startActivity(new Intent(this, ProvasActivity.class));
+                return false;
+
             default:
                 break;
 
