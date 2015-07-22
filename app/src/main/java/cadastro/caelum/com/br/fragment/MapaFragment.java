@@ -11,6 +11,7 @@ import java.util.List;
 import cadastro.caelum.com.br.dao.AlunoDAO;
 import cadastro.caelum.com.br.dao.DBHelper;
 import cadastro.caelum.com.br.modelo.Aluno;
+import cadastro.caelum.com.br.util.AtualizadorDeLocalizacao;
 import cadastro.caelum.com.br.util.Localizador;
 
 /**
@@ -24,7 +25,9 @@ public class MapaFragment extends SupportMapFragment {
         AlunoDAO dao = new AlunoDAO(new DBHelper(getActivity()));
         List<Aluno> alunos = dao.getAlunos();
         dao.closeConnection();
+
         Localizador localizador = new Localizador(getActivity());
+        new AtualizadorDeLocalizacao(getActivity(), this);
 
         for (Aluno aluno : alunos) {
             MarkerOptions marker = new MarkerOptions();
@@ -34,12 +37,9 @@ public class MapaFragment extends SupportMapFragment {
                 getMap().addMarker(marker);
             }
         }
-
-        centralizaMapa(localizador.getCoordenada("Rua Vergueiro 3185 Vila Mariana"));
-
     }
 
-    private void centralizaMapa(LatLng local) {
+    public void centralizaMapa(LatLng local) {
         GoogleMap map = getMap();
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(local, 17));
     }
